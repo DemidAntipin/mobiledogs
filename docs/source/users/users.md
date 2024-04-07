@@ -18,7 +18,7 @@ json: содержит `success: true` в случае успешной реги
 
 **Raises**
 
-UniqueException: попытка создать дубликат уникального значения
+* UniqueException: попытка создать дубликат уникального значения
 
 ## user_login
 
@@ -35,8 +35,8 @@ json: содержит `success: true` в случае успешной авто
 
 **Raises**
 
-IndexException: пользователя с указанной почтой не существует в базе данных
-ValueException: указан неверный пароль
+* IndexException: пользователя с указанной почтой не существует в базе данных
+* ValueException: указан неверный пароль
 
 ## user_logout
 
@@ -63,8 +63,8 @@ json: содержит `success: true` в случае успешной рабо
 
 **Raises:**
 
-IndexException: пользователя с указанным id не существует
-ValueException: секретный ключ указан неверно
+* IndexException: пользователя с указанным id не существует
+* ValueException: секретный ключ указан неверно
 
 ## remove_priviledges
 
@@ -81,7 +81,7 @@ json: содержит `success: true` в случае успешной рабо
 
 **Raises:**
 
-IndexException: пользователя с указанным id не существует
-ValueException: секретный ключ указан неверно
+* IndexException: пользователя с указанным id не существует
+* ValueException: секретный ключ указан неверно
 
 
