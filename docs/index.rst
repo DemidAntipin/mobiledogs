@@ -7,11 +7,16 @@
 ===============================
 
 .. toctree::
-   :maxdepth: 4
-   :glob:
+   :maxdepth: 3
    :caption: База данных
 
    source/database
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Модуль работы с пользоваетлями
+
+   source/users/users.md
 
 Indices and tables
 ==================
