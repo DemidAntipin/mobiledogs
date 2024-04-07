@@ -1,9 +1,9 @@
 from src.users import models, schemas
 from sqlalchemy.orm import Session
+from werkzeug.security import generate_password_hash, check_password_hash
 
 def create_user(db: Session, user : schemas.UserCreate) -> models.User:
-	fake_hash="gegeeg"
-	db_user = models.User(name=user.name, email=user.email, hash_password=fake_hash)
+	db_user = models.User(name=user.name, email=user.email, hash_password=generate_password_hash(user.password))
 	db.add(db_user)
 	db.commit()
 	db.refresh(db_user)

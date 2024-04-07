@@ -9,3 +9,6 @@ class User(BaseDBModel):
 	email = Column(String, unique=True, index=True)
 	hash_password = Column(String, unique=False, index=False)
 	is_active = Column(Boolean, default=True)
+	service = Column(Boolean, default=False)
+	latitude = Column(Integer, index=True)
+	longitute = Column(Integer, index=True)
