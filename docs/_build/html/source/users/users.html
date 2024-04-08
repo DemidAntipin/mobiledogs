@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Модуль работы с пользователями &#8212; документация MobileDogs 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=cb25574f" />
+    <script src="../../_static/documentation_options.js?v=9ca2116e"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=29b1f277"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../search.html" />
+    <link rel="next" title="Модуль работы с собаками" href="../dogs/dogs.html" />
+    <link rel="prev" title="Описание:" href="../database.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>Модуль работы с пользователями<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>Модуль включает функции для работы с пользователями.</p>
+<section id="user-registration">
+<h2>Функция user_registration<a class="headerlink" href="#user-registration" title="Link to this heading">¶</a></h2>
+<p>Функция регистрирует нового пользователя и добавляет его в базу данных.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>(string): имя пользователя</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">email</span></code>(EmailString): почта пользователя, должна быть уникальной в базе данных</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>(string): пароль пользователя</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной регистрации</p>
+<p><strong>Raises</strong></p>
+<ul class="simple">
+<li><p>UniqueException: попытка создать дубликат уникального значения</p></li>
+</ul>
+</section>
+<section id="user-login">
+<h2>Функция user_login<a class="headerlink" href="#user-login" title="Link to this heading">¶</a></h2>
+<p>Функция авторизует пользователя и открывает ему доступ к функциям, требующих авторизации.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">email</span></code>(EmailString): почта пользователя, должна быть уникальной в базе данных</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code>(string): пароль пользователя</p></li>
+</ul>
+<p><strong>Return</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной авторизации</p>
+<p><strong>Raises</strong></p>
+<ul class="simple">
+<li><p>IndexException: пользователя с указанной почтой не существует в базе данных</p></li>
+<li><p>ValueException: указан неверный пароль</p></li>
+</ul>
+</section>
+<section id="user-logout">
+<h2>Функция user_logout<a class="headerlink" href="#user-logout" title="Link to this heading">¶</a></h2>
+<p>Функция обеспечивает выход пользователя из приложения. Закрывает доступ к функциям, требующих авторизации.</p>
+<p><strong>Parametrs</strong></p>
+<p><strong>Return</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной деавторизации</p>
+</section>
+<section id="give-priviledges">
+<h2>Функция give_priviledges<a class="headerlink" href="#give-priviledges" title="Link to this heading">¶</a></h2>
+<p>Функция открывает пользователю доступ к расширенному функционалу (взаимодействие с ошейниками).</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_id</span></code>(integer): id пользователя</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">secretkey</span></code>(string): секретная последовательность символов, позволяющая открыть волонтеру доступ к работе с ошейниками</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: пользователя с указанным id не существует</p></li>
+<li><p>ValueException: секретный ключ указан неверно</p></li>
+</ul>
+</section>
+<section id="remove-priviledges">
+<h2>Функция remove_priviledges<a class="headerlink" href="#remove-priviledges" title="Link to this heading">¶</a></h2>
+<p>Функция закрывает пользователю доступ к работе с ошейниками.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_id</span></code>(integer): id пользователя</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">secretkey</span></code>(string): секретная последовательность символов, позволяющая закрыть волонтеру доступ к работе с ошейниками</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: пользователя с указанным id не существует</p></li>
+<li><p>ValueException: секретный ключ указан неверно</p></li>
+</ul>
+</section>
+<section id="give-task">
+<h2>Функция give_task<a class="headerlink" href="#give-task" title="Link to this heading">¶</a></h2>
+<p>Функция выдает задание пользователю. Этот пользователь должен быть активен, а собака находится в его списке.</p>
+<p><strong>Paraments:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_id</span></code>(integer): id пользователя</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_id</span></code>(integer): id собаки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">message</span></code>(string): сообщение с заданием</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: пользователь с указанным id не существует</p></li>
+<li><p>IndexException: собака с указанным id не существует</p></li>
+<li><p>InvalidException: пользователь неактивен</p></li>
+<li><p>InvaludException: собака не находится в списке пользователя</p></li>
+</ul>
+</section>
+<section id="confirm-task">
+<h2>Функция confirm_task<a class="headerlink" href="#confirm-task" title="Link to this heading">¶</a></h2>
+<p>Функция проверки заданий, выдаваемых пользователями.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_id</span></code>(integer): id пользователя</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>(file): доказательство выполненного задания, которое будет отправлено пользователю с id = user_id</p></li>
+</ul>
+<p><strong>Return:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: пользоваетля с указанным id не существует</p></li>
+<li><p>InvalidException: data отсутствует или файл с таким форматом не получается обработать</p></li>
+<li><p>ValueException: пользоваетль запросил переподтверждение задания</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MobileDogs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">База данных</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">Описание:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html#id2">Таблицы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с пользоваетлями</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Модуль работы с пользователями</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#user-registration">Функция user_registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-login">Функция user_login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-logout">Функция user_logout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#give-priviledges">Функция give_priviledges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remove-priviledges">Функция remove_priviledges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#give-task">Функция give_task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#confirm-task">Функция confirm_task</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с собаками</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dogs/dogs.html">Модуль работы с собаками</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с ошейниками</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../osheinics/osheinics.html">Модуль работы с ошейниками</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../database.html" title="предыдущая глава">Описание:</a></li>
+      <li>Next: <a href="../dogs/dogs.html" title="следующая глава">Модуль работы с собаками</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Demid Antipin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/source/users/users.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

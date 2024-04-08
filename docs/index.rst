@@ -18,6 +18,18 @@
 
    source/users/users.md
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Модуль работы с собаками
+
+   source/dogs/dogs.md
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Модуль работы с ошейниками
+
+   source/osheinics/osheinics.md
+
 Indices and tables
 ==================
 

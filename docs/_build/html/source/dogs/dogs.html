@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Модуль работы с собаками &#8212; документация MobileDogs 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=cb25574f" />
+    <script src="../../_static/documentation_options.js?v=9ca2116e"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=29b1f277"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../search.html" />
+    <link rel="next" title="Модуль работы с ошейниками" href="../osheinics/osheinics.html" />
+    <link rel="prev" title="Модуль работы с пользователями" href="../users/users.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>Модуль работы с собаками<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>Модуль включает функции для работы с собаками.</p>
+<section id="new-dog">
+<h2>Функция new_dog<a class="headerlink" href="#new-dog" title="Link to this heading">¶</a></h2>
+<p>Функция добавляет в базу данных новую собаку.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>(string): кличка собаки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">osheinic_id</span></code>(integer): id ошейника, должен существовать в базе и не быть привязанным к другой собаке</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной регистрации</p>
+<p><strong>Raises</strong></p>
+<ul class="simple">
+<li><p>IndexException: ошейника с таким id не существует в базе данных</p></li>
+<li><p>ValueException: ошейник уже привязан к другой собаке</p></li>
+</ul>
+</section>
+<section id="dog-list">
+<h2>Функция dog_list<a class="headerlink" href="#dog-list" title="Link to this heading">¶</a></h2>
+<p>Функция выводит список собак пользователя (проиводит выборку из таблицы connections с фильтрацией по пользователю).</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">user_id</span></code>(integer): Опционален, по умолчанию равен id текущего пользователя.</p></li>
+</ul>
+<p><strong>Return</strong></p>
+<p>list(json): содержит массив json объектов <code class="docutils literal notranslate"><span class="pre">{'dog_id'</span> <span class="pre">:</span> <span class="pre">dog_id(integer),</span> <span class="pre">'distance'</span> <span class="pre">:</span> <span class="pre">distance(float),</span> <span class="pre">'last_cared'</span> <span class="pre">:</span> <span class="pre">(datetime)}</span></code>. Ключ <code class="docutils literal notranslate"><span class="pre">distance</span></code> указывает растояние до собаки от текущего положения пользователя в метрах.</p>
+<p><strong>Raises</strong></p>
+<ul class="simple">
+<li><p>IndexException: пользователя с указанным id не существует в базе</p></li>
+</ul>
+</section>
+<section id="dog-list-all">
+<h2>Функция dog_list_all<a class="headerlink" href="#dog-list-all" title="Link to this heading">¶</a></h2>
+<p>Функция выводит список всех собак, информация о которых есть в приложении.</p>
+<p><strong>Parametrs</strong></p>
+<p><strong>Return</strong></p>
+<p>list(json): содержит массив json объектов <code class="docutils literal notranslate"><span class="pre">{'dog_id'</span> <span class="pre">:</span> <span class="pre">dog_id(integer),</span> <span class="pre">'distance'</span> <span class="pre">:</span> <span class="pre">distance(float),</span> <span class="pre">'last_cared'</span> <span class="pre">:</span> <span class="pre">(datetime)}</span></code>. Ключ <code class="docutils literal notranslate"><span class="pre">distance</span></code> указывает растояние до собаки от текущего положения пользователя в метрах.</p>
+</section>
+<section id="care-about">
+<h2>Функция care_about<a class="headerlink" href="#care-about" title="Link to this heading">¶</a></h2>
+<p>Функция добавляет собаку в список пользователя.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_id</span></code>(integer): id собаки</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: собаки с указанным id не существует</p></li>
+<li><p>InvalidException: собака уже находится в списке пользователя</p></li>
+</ul>
+</section>
+<section id="stop-care">
+<h2>Функция stop_care<a class="headerlink" href="#stop-care" title="Link to this heading">¶</a></h2>
+<p>Функция удаляет собаку из списка пользователя.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_id</span></code>(integer): id собаки</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: собаки с указанным id не существует</p></li>
+<li><p>InvalidException: собака не находится в списке пользователя</p></li>
+</ul>
+</section>
+<section id="track">
+<h2>Функция track<a class="headerlink" href="#track" title="Link to this heading">¶</a></h2>
+<p>Функция выводит расстояние до выбранной собаки от текущего располжения пользователя. Расстояние обновляется время от времени.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_id</span></code>(integer): id собаки</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>float: растояние до собаки в метрах</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: собаки с указанным id не существует</p></li>
+</ul>
+</section>
+<section id="stop-track">
+<h2>Функция stop_track<a class="headerlink" href="#stop-track" title="Link to this heading">¶</a></h2>
+<p>Функция останавливает отслеживание собаки.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_id</span></code>(integer): id собаки</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной работы</p>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: собаки с указанным id не существует</p></li>
+<li><p>InvalidException: собака с указанным id не отслеживается текущим пользователем</p></li>
+</ul>
+</section>
+<section id="choose-dog">
+<h2>Функция choose_dog<a class="headerlink" href="#choose-dog" title="Link to this heading">¶</a></h2>
+<p>С помощью этой функции пользователь может самостоятельно выбрать собаку, о которой он хочет позаботиться или принять задание от другого волонтера.</p>
+<p><strong>Paramentrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_id</span></code>(integer): id собаки</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dog_name</span></code>(string): кличка собаки</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">distance</span></code>(float): расстояние до собаки в метрах</p></li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: собаки с указанным id не существует</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MobileDogs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">База данных</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">Описание:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html#id2">Таблицы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с пользоваетлями</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../users/users.html">Модуль работы с пользователями</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с собаками</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Модуль работы с собаками</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#new-dog">Функция new_dog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dog-list">Функция dog_list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dog-list-all">Функция dog_list_all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#care-about">Функция care_about</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stop-care">Функция stop_care</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#track">Функция track</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stop-track">Функция stop_track</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#choose-dog">Функция choose_dog</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с ошейниками</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../osheinics/osheinics.html">Модуль работы с ошейниками</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../users/users.html" title="предыдущая глава">Модуль работы с пользователями</a></li>
+      <li>Next: <a href="../osheinics/osheinics.html" title="следующая глава">Модуль работы с ошейниками</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Demid Antipin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/source/dogs/dogs.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

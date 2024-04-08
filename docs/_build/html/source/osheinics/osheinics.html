@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Модуль работы с ошейниками &#8212; документация MobileDogs 1.0</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=cb25574f" />
+    <script src="../../_static/documentation_options.js?v=9ca2116e"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=29b1f277"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../search.html" />
+    <link rel="prev" title="Модуль работы с собаками" href="../dogs/dogs.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>Модуль работы с ошейниками<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>Модуль включает функции для работы с ошейниками.</p>
+<section id="osheinic-registration">
+<h2>Функция osheinic_registration<a class="headerlink" href="#osheinic-registration" title="Link to this heading">¶</a></h2>
+<p>Функция регистрирует новой ошейник и добавляет его в базу данных. Доступ к функции ограничен только для пользователей, имеющих доступ к работе с ошейниками.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">osheinic_ip</span></code>(string): ip ошейника. Функция делает запрос к ошейнику и приверяет его доступность.</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>json: содержит <code class="docutils literal notranslate"><span class="pre">success:</span> <span class="pre">true</span></code> в случае успешной регистрации</p>
+<p><strong>Raises</strong></p>
+<ul class="simple">
+<li><p>TimeOutException: приложение не получило ответ от ошейника</p></li>
+</ul>
+</section>
+<section id="watch-troubles">
+<h2>Функция watch_troubles<a class="headerlink" href="#watch-troubles" title="Link to this heading">¶</a></h2>
+<p>Функция выдает список ошейников, которые не отвечают приложению в течении долгого времени. Доступ к функции ограничен только для пользователей, имеющих доступ к работе с ошейниками.</p>
+<p><strong>Paramentrs:</strong></p>
+<p><strong>Returns:</strong></p>
+<p>list(int): Массив id ошейников, которые стоит проверить.</p>
+</section>
+<section id="service">
+<h2>Функция  service<a class="headerlink" href="#service" title="Link to this heading">¶</a></h2>
+<p>Функция выводит последние координаты, известные о данном ошейнике. Доступ к функции ограничен только для пользователей, имеющих доступ к работе с ошейниками.</p>
+<p><strong>Parametrs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">osheinic_id</span></code>(int): id ошейника</p></li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">distance</span></code>(float): расстояние до последнего известного местоположения ошейника в метрах</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ip</span></code>(string): ip ошейника</p></li>
+</ul>
+<p><strong>Raises:</strong></p>
+<ul class="simple">
+<li><p>IndexException: ошейника с указанным id не существует</p></li>
+</ul>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MobileDogs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">База данных</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database.html">Описание:</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database.html#id2">Таблицы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с пользоваетлями</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../users/users.html">Модуль работы с пользователями</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с собаками</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dogs/dogs.html">Модуль работы с собаками</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Модуль работы с ошейниками</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Модуль работы с ошейниками</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#osheinic-registration">Функция osheinic_registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#watch-troubles">Функция watch_troubles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#service">Функция  service</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../dogs/dogs.html" title="предыдущая глава">Модуль работы с собаками</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Demid Antipin.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/source/osheinics/osheinics.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
