@@ -2,16 +2,16 @@
 
 ## База данных
 
-- [База данных](source/database)
+- [База данных](docs/source/database.md)
 
 ## Модуль работы с пользоваетлями
 
-- [Пользователи](source/users/users.md)
+- [Пользователи](docs/source/users/users.md)
 
 ## Модуль работы с собаками
 
-- [Собаки](source/dogs/dogs.md)
+- [Собаки](docs/source/dogs/dogs.md)
 
 ## Модуль работы с ошейниками
 
-- [Ошейники](source/osheinics/osheinics.md)
+- [Ошейники](docs/source/osheinics/osheinics.md)
