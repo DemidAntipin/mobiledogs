@@ -10,8 +10,8 @@
 
 ## Модуль работы с собаками
 
-- [Собаки](docs/source/dogs/dogs.md)
+- [Собаки и ошейники](docs/source/dogs/dogs.md)
 
-## Модуль работы с ошейниками
+## Модуль работы с задачами
 
-- [Ошейники](docs/source/osheinics/osheinics.md)
+- [Задачи](docs/source/tasks/tasks.md)

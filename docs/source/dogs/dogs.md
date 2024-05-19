@@ -1,132 +1,331 @@
 # Модуль работы с собаками
 
-Модуль включает функции для работы с собаками.
+Модуль включает функции для работы с собаками и ошейниками.
 
-## Функция new_dog
+## Функция create_dog
 
 Функция добавляет в базу данных новую собаку.
 
 **Parametrs:**
 
+* `token` (string): токен пользователя. Выдается функцией `login_user`
 * `name`(string): кличка собаки
-* `osheinic_id`(integer): id ошейника, должен существовать в базе и не быть привязанным к другой собаке
+* `description` (string): описание и приметы собаки
+* `collar_id`(integer): id ошейника, должен существовать в базе и не быть привязанным к другой собаке
 
 **Returns:**
 
-json: содержит `success: true` в случае успешной регистрации
+```json
+{
+    "success": true,
+    "exception": null,
+    *dog_id*: <dog_id>
+}
+```
 
 **Raises**
 
-* IndexException: ошейника с таким id не существует в базе данных
-* ValueException: ошейник уже привязан к другой собаке
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+* `collar_not_found`: ошейника с указанным id не существует
 
-## Функция dog_list
+## Функция read_dog
 
-Функция выводит список собак пользователя (проиводит выборку из таблицы connections с фильтрацией по пользователю). 
+Функция выводит информацию о конкретной собаке
 
-**Parametrs:**
+**Parameters**
 
-* `user_id`(integer): Опционален, по умолчанию равен id текущего пользователя.
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `dog_id` (integer): id собаки
 
-**Return**
+**Returns**
 
-list(json): содержит массив json объектов `{'dog_id' : dog_id(integer), 'distance' : distance(float), 'last_cared' : (datetime)}`. Ключ `distance` указывает растояние до собаки от текущего положения пользователя в метрах.
+```json
+{
+    "name": <dog_name>,
+    "description": <dog_description>,
+    "collar_id": <collar_id>,
+    "datas": 
+        [
+            {
+                "longitute": <longitude>,
+                "latitude": <latitude>,
+                "datetime": <datetime>
+            },
+            {
+                "longitute": <longitude>,
+                "latitude": <latitude>,
+                "datetime": <datetime>
+            }
+            ...
+        ]
+}
+```
 
 **Raises**
 
-* IndexException: пользователя с указанным id не существует в базе
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+* `dog_not_found`: собака с указанным id не зарегистрирована в базе
 
-## Функция dog_list_all
+## Функция read_dogs
 
-Функция выводит список всех собак, информация о которых есть в приложении.
+Функция выводит информацию о `limit` собаках, пропуская `skip` первых.
 
-**Parametrs**
+**Parameters**
 
-**Return**
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `skip` (integer) optional: кол-во пропущенных строк в таблице
+* `limit` (integer) optional: кол-во собак
 
-list(json): содержит массив json объектов `{'dog_id' : dog_id(integer), 'distance' : distance(float), 'last_cared' : (datetime)}`. Ключ `distance` указывает растояние до собаки от текущего положения пользователя в метрах.
+**Returns**
 
-## Функция care_about
+```json
+{
+    [
+        {
+            "name": <dog_name>,
+    	    "description": <dog_description>,
+    	    "collar_id": <collar_id>,
+    	    "datas":
+        	[
+            	    {
+                	"longitute": <longitude>,
+                	"latitude": <latitude>,
+                	"datetime": <datetime>
+                },
+                {
+                	"longitute": <longitude>,
+                	"latitude": <latitude>,
+                	"datetime": <datetime>
+                }
+                ...
+                ]
+         },
+        {
+            "name": <dog_name>,
+            "description": <dog_description>,
+            "collar_id": <collar_id>,
+            "datas":
+                [
+                    {
+                        "longitute": <longitude>,
+                        "latitude": <latitude>,
+                        "datetime": <datetime>
+                    },
+                    {
+                        "longitute": <longitude>,
+                        "latitude": <latitude>,
+                        "datetime": <datetime>
+                    }
+                    ...
+                ]
+         }
+         ...
+    ]
+}
+```
 
-Функция добавляет собаку в список пользователя.
+**Raises**
 
-**Parametrs:**
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
 
-* `dog_id`(integer): id собаки
+## Функция create_collar
+
+Функция добавляет в базу данных новый ошейник.
+
+**Parameters:**
+
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `ip` (string): ip ошейника
+
+**Returns**
+
+```json
+    {
+        "success": true,
+        "exception": null,
+        "id": <collar_id>
+    }
+```
+
+**Raises**
+
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+* `ip_collision`: указаный ip уже присвоен другому ошейнику в базе
+
+### Функция read_collar_by_id
+
+Функция выдает информацию об ощейнике по его id
+
+**Parameters:**
+
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `id` (integer): id ошейника
+
+**Returns**
+
+```json
+    {
+        "id": <collar_id>,
+        "ip": <collar_ip>
+    }
+```
+
+**Raises**
+
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+* `collar_not_found`: ошейника с указанным id нет в базе данных
+
+### Функция read_collar_by_ip
+
+Функция выдает информацию об ошейнике по его ip
+
+**Parameters:**
+
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `ip` (string): ip ошейника
+
+**Returns**
+
+```json
+    {
+        "id": <collar_id>,
+        "ip": <collar_ip>
+    }
+```
+
+**Raises**
+
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+* `collar_not_found`: ошейника с указанным ip нет в базе данных
+
+### Функция read_collars
+
+Функция выдает информацию о `limit` ошейниках в базе данных, пропуская `skip` первых
+
+**Parameters:**
+
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `skip` (integer) optional: кол-во пропущенных строк в таблице
+* `limit` (integer) optional: кол-во ошейников
+
+**Returns**
+
+```json
+    {
+        [
+            {
+                "id": <collar_id>,
+                "ip": <collar_ip>
+            },
+            {
+                "id": <collar_id>,
+                "ip": <collar_ip>
+            }
+            ...
+        ]
+    }
+```
+
+**Raises**
+
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+
+### Функция create_data_for_dog
+
+Функция обрабатывает запросы от ошейника и записывает в базу данных информацию о собаке
+
+**Parameters:**
+
+* `ip` (string): ip ошейника
+* `dog_id` (integer): id собаки
+* `latutude` (float): примерная координата широты
+* `longitude` (float): примерная координата долготы
+* `datetime` (datetime): время получения запроса
+
+**Returns**
+
+```json
+    {
+        "id": <id>,
+	"dog_id": <dog_id>,
+        "longitute": <longitude>,
+        "latitude": <latitude>,
+        "datetime": <datetime>
+    }
+```
+
+**Raises**
+
+* `invalid_ip`: указан невалидный ip
+
+### Функция get_data_for_dog
+
+Функция выводит данные о месторасположении конкретной собаки
+
+**Parameters:**
+
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `dog_id` (integer): id собаки
 
 **Returns:**
 
-json: содержит `success: true` в случае успешной работы
+```json
+    [
+        {
+                "id": <id>,
+                "dog_id": <dog_id>,
+                "longitute": <longitude>,
+                "latitude": <latitude>,
+                "datetime": <datetime>
+        },
+        {
+                "id": <id>,
+                "dog_id": <dog_id>,
+                "longitute": <longitude>,
+                "latitude": <latitude>,
+                "datetime": <datetime>
+        }
+        ...
+    ]
+```
 
-**Raises:**
+**Raises**
 
-* IndexException: собаки с указанным id не существует
-* InvalidException: собака уже находится в списке пользователя
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции
+* `dog_not_found`: собака с указанным id не зарегистрирована в базе
 
-## Функция stop_care
+### Функция read_dogsdata
 
-Функция удаляет собаку из списка пользователя.
+Функция выводит данные о `limit` месторасположениях собак, пропуская `skip` строчек
 
-**Parametrs:**
+**Parameters**
 
-* `dog_id`(integer): id собаки
-
-**Returns:**
-
-json: содержит `success: true` в случае успешной работы
-
-**Raises:**
-
-* IndexException: собаки с указанным id не существует
-* InvalidException: собака не находится в списке пользователя
-
-## Функция track
-
-Функция выводит расстояние до выбранной собаки от текущего располжения пользователя. Расстояние обновляется время от времени.
-
-**Parametrs:**
-
-* `dog_id`(integer): id собаки
-
-**Returns:**
-
-float: растояние до собаки в метрах
-
-**Raises:**
-
-* IndexException: собаки с указанным id не существует
-
-## Функция stop_track
-
-Функция останавливает отслеживание собаки.
-
-**Parametrs:**
-
-* `dog_id`(integer): id собаки
+* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `skip` (integer) optional: кол-во пропущенных строк в таблице
+* `limit` (integer) optional: кол-во месторасположений
 
 **Returns:**
 
-json: содержит `success: true` в случае успешной работы
+```json
+    [
+        {
+                "id": <id>,
+                "dog_id": <dog_id>,
+                "longitute": <longitude>,
+                "latitude": <latitude>,
+                "datetime": <datetime>
+        },
+        {
+                "id": <id>,
+                "dog_id": <dog_id>,
+                "longitute": <longitude>,
+                "latitude": <latitude>,
+                "datetime": <datetime>
+        }
+        ...
+    ]
+```
 
-**Raises:**
+**Raises**
 
-* IndexException: собаки с указанным id не существует
-* InvalidException: собака с указанным id не отслеживается текущим пользователем
-
-## Функция choose_dog
-
-С помощью этой функции пользователь может самостоятельно выбрать собаку, о которой он хочет позаботиться или принять задание от другого волонтера.
-
-**Paramentrs:**
-
-* `dog_id`(integer): id собаки
-
-**Returns:**
-
-* `dog_name`(string): кличка собаки
-* `distance`(float): расстояние до собаки в метрах
-
-**Raises:**
-
-* IndexException: собаки с указанным id не существует
-
+* `invalid_token`: указан неверный токен, недостаточно прав для выполнения функции

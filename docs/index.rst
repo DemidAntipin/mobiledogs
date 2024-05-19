@@ -26,9 +26,9 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Модуль работы с ошейниками
+   :caption: Модуль работы с задачами
 
-   source/osheinics/osheinics.md
+   source/tasks/tasks.md
 
 Indices and tables
 ==================

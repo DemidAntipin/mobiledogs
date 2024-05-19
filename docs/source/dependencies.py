@@ -1,4 +1,4 @@
-from src.database import DBSession
+from database import DBSession
 
 def get_db_session():
 	session = DBSession()
