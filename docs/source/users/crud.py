@@ -2,7 +2,10 @@ from users import models, schemas
 from sqlalchemy.orm import Session
 from .exceptions import invalid_login
 from werkzeug.security import generate_password_hash, check_password_hash
+from logger import get_logger
 import hashlib
+
+log = get_logger("user_auth")
 
 def get_user(db: Session, user_id: int):
     return db.query(models.User).filter(models.User.id == user_id).first()
@@ -25,9 +28,12 @@ def get_users(db: Session, skip: int = 0, limit: int = 10):
 
 def get_users_token(db: Session, name: str, password:str):
     user = db.query(models.User).filter(models.User.name == name).first()
+    log.info("Starting validation of user data")
     if user and user.check_password(password):
+       log.info("Data is valid")
        return user
     else:
+       log.error("invalid data")
        raise invalid_login()
 
 def create_user(db: Session, user: schemas.UserCreate):

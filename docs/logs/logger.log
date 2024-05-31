@@ -1,0 +1,22 @@
+2024-05-31 15:12:44,190 — user_router — INFO — Registration of new user - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:12:44,210 — user_router — ERROR — Error. User with such email already exists - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:12:59,057 — user_router — INFO — Registration of new user - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:12:59,206 — user_router — INFO — User registrated - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:14,840 — user_router — INFO — Logging as user string - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:14,842 — user_auth — INFO — Starting validation of user data - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:14,969 — user_auth — INFO — Data is valid - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:14,970 — user_router — INFO — Data of string is valid. Successful logging. - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:31,101 — user_router — INFO — Logging as user st643ring - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:31,102 — user_auth — INFO — Starting validation of user data - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:31,232 — user_auth — INFO — Data is valid - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:31,232 — user_router — INFO — Data of st643ring is valid. Successful logging. - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:52,729 — user_router — INFO — Reading list of users - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:13:52,732 — user_router — INFO — list of users is read - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:14:11,952 — user_router — INFO — Reading user - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:14:11,954 — user_router — INFO — User is read - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:14:13,211 — user_router — INFO — Reading user - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:14:13,213 — user_router — INFO — User is read - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:15:04,787 — dogs_router — INFO — Adding a dog to database - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:15:04,791 — dogs_router — ERROR — Collar 0 doesn't exist - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:15:16,752 — dogs_router — INFO — Adding a dog to database - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
+2024-05-31 15:15:16,753 — dogs_router — ERROR — Dog with such collar already exists - IP: 9caba13b1a636eb1d0d822aa8c82fd3b
