@@ -18,7 +18,7 @@
     {
         "success": true,
         "exception": null,
-        "task_id": <task_id>
+        "task_id": task_id
     }
 ```
 
@@ -40,10 +40,10 @@
 
 ```json
     {
-        "id": <task_id>,
-        "dog_id": <dog_id>,
-        "type": <task_type>,
-        "status": <task_status>,
+        "id": task_id,
+        "dog_id": dog_id,
+        "type": task_type,
+        "status": task_status,
         "responses": []
     }
 ```
@@ -68,17 +68,17 @@
 ```json
     [
             {
-                "id": <task_id>,
-                "dog_id": <dog_id>,
-                "type": <task_type>,
-                "status": <task_status>,
+                "id": task_id,
+                "dog_id": dog_id,
+                "type": task_type,
+                "status": task_status,
                 "responses": []
             },
             {
-                "id": <task_id>,
-                "dog_id": <dog_id>,
-                "type": <task_type>,
-                "status": <task_status>,
+                "id": task_id,
+                "dog_id": dog_id,
+                "type": task_type,
+                "status": task_status,
                 "responses": []
             }
             ...
@@ -105,7 +105,7 @@
     {
         "success": true,
         "exception": null,
-        "task_id": <task_id>
+        "task_id": task_id
     }
 ```
 
@@ -128,10 +128,10 @@
 
 ```json
     {
-        "id": <response_id>,
-        "user_id": <user_id>,
-        "task_id": <task_id>,
-        "proof": <proof>,
+        "id": response_id,
+        "user_id": user_id,
+        "task_id": task_id,
+        "proof": proof,
         "status": False
     }
 ```
@@ -179,18 +179,18 @@
 ```json
     [
         {
-            "id": <response_id>,
-            "task_id": <task_id>,
-            "user_id": <user_id>,
-            "proof": <response_proof>,
-            "deleted": <response_status>
+            "id": response_id,
+            "task_id": task_id,
+            "user_id": user_id,
+            "proof": response_proof,
+            "deleted": response_status
         },
         {
-            "id": <response_id>,
-            "task_id": <task_id>,
-            "user_id": <user_id>,
-            "proof": <response_proof>,
-            "deleted": <response_status>
+            "id": response_id,
+            "task_id": task_id,
+            "user_id": user_id,
+            "proof": response_proof,
+            "deleted": response_status
         }
         ...
     ]
@@ -235,5 +235,5 @@
 
 **Raises**
 
-* `token` (string): токен пользователя. Выдается функцией `login_user`
+* `invalid_login`: пользователя с таким именем не существует, или веден неверный пароль
 
