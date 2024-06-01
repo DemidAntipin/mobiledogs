@@ -19,4 +19,5 @@
 ## Запуск сервера
 
 * Скачайте репозиторий `git clone https://github.com/DemidAntipin/mobiledogs.git`
+* Скачайте зависимости `pip install mobiledogs/docs/requirements.txt`
 * Запустите веб сервер командой `python3 mobiledogs/docs/source/main.py`
