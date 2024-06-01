@@ -14,7 +14,7 @@
 
 ## Модуль работы с задачами
 
-- [Задачи](docs/source/tasks/tasks.md
+- [Задачи](docs/source/tasks/tasks.md)
 
 ## Запуск сервера
 
